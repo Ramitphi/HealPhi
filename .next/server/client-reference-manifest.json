@@ -56,6 +56,14 @@
         "async": false
       }
     },
+    "(app-client)/./src/app/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./src/app/page.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./node_modules/.pnpm/next@13.4.6_biqbaboplfbrettd7655fr4n2y/node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js": {
       "*": {
         "id": "(sc_client)/./node_modules/.pnpm/next@13.4.6_biqbaboplfbrettd7655fr4n2y/node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
@@ -75,14 +83,6 @@
     "(app-client)/./src/components/common/Navbar.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/common/Navbar.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./src/app/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/page.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -251,6 +251,14 @@
       ],
       "async": false
     },
+    "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/page.tsx": {
+      "id": "(app-client)/./src/app/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
     "/Users/ramit/work/healphi/healyphi/HealPhi/node_modules/.pnpm/next@13.4.6_biqbaboplfbrettd7655fr4n2y/node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js": {
       "id": "(app-client)/./node_modules/.pnpm/next@13.4.6_biqbaboplfbrettd7655fr4n2y/node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
       "name": "*",
@@ -282,17 +290,13 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
-    },
-    "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/page.tsx": {
-      "id": "(app-client)/./src/app/page.tsx",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
     }
   },
   "entryCSSFiles": {
+    "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/page": {
+      "modules": [],
+      "files": []
+    },
     "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/layout": {
       "modules": [
         "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/globals.css",
@@ -301,10 +305,6 @@
       "files": [
         "static/css/app/layout.css"
       ]
-    },
-    "/Users/ramit/work/healphi/healyphi/HealPhi/src/app/page": {
-      "modules": [],
-      "files": []
     }
   }
 }

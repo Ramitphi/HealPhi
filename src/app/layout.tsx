@@ -8,7 +8,6 @@ import Navbar from "@/components/common/Navbar";
 import HuddleContextProvider from "@/components/ClientComponents/HuddleContextProvider";
 import { cn } from "@/utils/helpers";
 
-import { WagmiConfig, createConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 
 const inter = Inter({ subsets: ["latin"] });
