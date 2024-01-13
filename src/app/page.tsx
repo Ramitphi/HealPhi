@@ -1,7 +1,8 @@
 // Components
 "use client";
 
-import IntroPage from "@/components/IntroPage/IntroPage";
+import MeetingCard from "@/components/MeetingCards/MeetingCard";
+import { useRouter } from "next/navigation";
 
 interface RoomDetails {
   message: string;
@@ -28,15 +29,20 @@ const createRandomRoom = async () => {
 };
 
 export default async function Home() {
-  // const roomId = await createRandomRoom();
+  const { push } = useRouter();
 
-  // console.log({roomId});
-
-  // return <IntroPage roomId={roomId} />;
   return (
-    <div className=" w-full   bg-[#B1D27B] h-screen flex justify-center items-center">
-      {/* <ConnectKitButton /> */}
-      <p>hhhh</p>
+    <div className="w-full  bg-[#B1D27B] h-full  flex  justify-center items-center">
+      <button
+        className="h-full my-56"
+        onClick={() => {
+          // push("/meetings");
+
+          alert("meetings");
+        }}
+      >
+        click me to route
+      </button>
     </div>
   );
 }
