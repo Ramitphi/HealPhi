@@ -10,17 +10,6 @@ import { cn } from "@/utils/helpers";
 
 import { WagmiConfig, createConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
-import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-
-const config = createConfig(
-  getDefaultConfig({
-    appName: "ConnectKit Next.js demo",
-    infuraId: "de",
-    alchemyId: "kkk",
-    chains: [mainnet, polygon, optimism, arbitrum],
-    walletConnectProjectId: "jj",
-  })
-);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,11 +27,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("min-h-screen relative font-inter", inter.className)}>
         <Navbar />
-        <WagmiConfig config={config}>
-          <ConnectKitProvider>
-            <HuddleContextProvider>{children}</HuddleContextProvider>
-          </ConnectKitProvider>
-        </WagmiConfig>
+
+        <HuddleContextProvider>{children}</HuddleContextProvider>
       </body>
     </html>
   );

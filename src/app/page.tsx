@@ -2,7 +2,6 @@
 "use client";
 
 import IntroPage from "@/components/IntroPage/IntroPage";
-import { ConnectKitButton } from "connectkit";
 
 interface RoomDetails {
   message: string;
@@ -36,7 +35,8 @@ export default async function Home() {
   // return <IntroPage roomId={roomId} />;
   return (
     <div className=" w-full   bg-[#B1D27B] h-screen flex justify-center items-center">
-      <ConnectKitButton />
+      {/* <ConnectKitButton /> */}
+      <p>hhhh</p>
     </div>
   );
 }
