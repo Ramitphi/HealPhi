@@ -8,6 +8,7 @@ specifiers:
   '@types/react': 18.2.13
   '@types/react-dom': 18.2.6
   autoprefixer: 10.4.14
+  axios: ^1.6.5
   clsx: ^1.2.1
   eslint: 8.43.0
   eslint-config-next: 13.4.6
@@ -32,6 +33,7 @@ dependencies:
   '@types/react': 18.2.13
   '@types/react-dom': 18.2.6
   autoprefixer: 10.4.14_postcss@8.4.24
+  axios: 1.6.5
   clsx: 1.2.1
   eslint: 8.43.0
   eslint-config-next: 13.4.6_7yfldhli4vs6yywnkyiujhawka
@@ -932,6 +934,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -4836,6 +4839,10 @@ packages:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
+
+  /napi-wasm/1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: false
 
   /natural-compare/1.4.0:

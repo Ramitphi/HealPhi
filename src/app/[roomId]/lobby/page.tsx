@@ -117,7 +117,7 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
   };
 
   useEffect(() => {
-    if (state === "connected") {
+    if (state === "connected" && params.roomId === "meetings") {
       push(`/${params.roomId}`);
     }
   }, [state]);
@@ -210,9 +210,9 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center w-full">
+        <div className="flex items-center w-full flex-col">
           <button
-            className="flex items-center justify-center bg-[#246BFD] text-slate-100 rounded-md p-2 mt-2 w-full"
+            className="flex items-center justify-center bg-[#B1D27B] text-slate-100 rounded-md p-2 mt-2 w-full"
             onClick={handleStartSpaces}
           >
             {isJoining ? "Joining Spaces..." : "Start Spaces"}
@@ -225,6 +225,13 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
                 className="w-6 h-6 ml-1"
               />
             )}
+          </button>
+          <button
+            className="items-center justify-center bg-[#B1D27B] text-slate-100 rounded-md p-2 mt-2 w-full"
+            onClick={() => push("/")}
+          >
+            {" "}
+            go back
           </button>
         </div>
       </div>

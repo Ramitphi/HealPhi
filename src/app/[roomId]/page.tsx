@@ -27,7 +27,7 @@ import { metadata } from "../layout";
 const Home = ({ params }: { params: { roomId: string } }) => {
   const { state } = useRoom({
     onLeave: () => {
-      push(`/${params.roomId}/lobby`);
+      push(`/`);
     },
   });
   const { push } = useRouter();
@@ -51,7 +51,7 @@ const Home = ({ params }: { params: { roomId: string } }) => {
   const { huddleClient } = useHuddle01();
 
   useEffect(() => {
-    if (state === "idle") {
+    if (state === "idle" && params.roomId !== "meetings") {
       push(`/${params.roomId}/lobby`);
       return;
     } else {

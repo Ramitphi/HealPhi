@@ -3,6 +3,8 @@
 
 import MeetingCard from "@/components/MeetingCards/MeetingCard";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface RoomDetails {
   message: string;
@@ -11,38 +13,43 @@ interface RoomDetails {
   };
 }
 
-const createRandomRoom = async () => {
-  const res = await fetch("https://api.huddle01.com/api/v1/create-room", {
-    method: "POST",
-    body: JSON.stringify({
-      title: "Test Room",
-    }),
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": process.env.NEXT_PUBLIC_API_KEY ?? "",
-    },
-    cache: "no-store",
-  });
-  const data: RoomDetails = await res.json();
-  const { roomId } = data.data;
-  return roomId;
-};
+interface IMeeting {
+  title: string;
+  avatar: string;
+  link: string;
+}
 
-export default async function Home() {
-  const { push } = useRouter();
+export default function Home() {
+  let meetings: IMeeting[] = [{ title: "12", avatar: "`", link: "`12" }];
+  useEffect(() => {
+    async () => {
+      const res = await getMeeting();
+      meetings.push(res);
+    };
+  }, []);
+
+  const getMeeting = async () => {
+    const res = await axios.get(
+      "https://api.huddle01.com/api/v1/live-meetings",
+      {
+        headers: { "Content-Type": "application/json", "x-api-key": "kkkk" },
+      }
+    );
+    return res.data;
+  };
 
   return (
-    <div className="w-full  bg-[#B1D27B] h-full  flex  justify-center items-center">
-      <button
-        className="h-full my-56"
-        onClick={() => {
-          // push("/meetings");
-
-          alert("meetings");
-        }}
-      >
-        click me to route
-      </button>
+    <div className="w-screen relative top-36 left-24  bg-[#B1D27B] h-screen ">
+      <div className="grid grid-cols-3 h-[9/10]  w-full">
+        {meetings.map((meeting, i) => (
+          <MeetingCard
+            key={i}
+            title={meeting.title}
+            avatar={meeting.avatar}
+            roomLink={meeting.link}
+          />
+        ))}
+      </div>
     </div>
   );
 }
