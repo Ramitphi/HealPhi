@@ -22,9 +22,6 @@ import {
   usePeerIds,
   useRoom,
 } from "@huddle01/react/hooks";
-import { AccessToken, Role } from "@huddle01/server-sdk/auth";
-import { Client } from "@huddle01/server-sdk/client";
-import { headers } from "next/dist/client/components/headers";
 
 type lobbyProps = {};
 
@@ -47,59 +44,8 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
     setIsJoining(true);
     let token = "";
     if (state !== "connected") {
-      try {
-        const response = await fetch(
-          `https://gamma.iriko.huddle01.com/api/v1/live-meeting/preview-peers?roomId=${params.roomId}`,
-          {
-            headers: {
-              "x-api-key": process.env.NEXT_PUBLIC_API_KEY ?? "",
-            },
-          }
-        );
-        const data = await response.json();
-
-        // console.log("data", data.previewPeers.length);
-        const accessToken = new AccessToken({
-          apiKey: process.env.NEXT_PUBLIC_API_KEY ?? "",
-          roomId: params.roomId,
-          // role: data.previewPeers.length > 0 ? Role.LISTENER : Role.HOST,
-          role: data.previewPeers.length > 0 ? Role.LISTENER : Role.HOST,
-          permissions: {
-            admin: true,
-            canConsume: true,
-            canProduce: true,
-            canProduceSources: { cam: true, mic: true, screen: true },
-            canRecvData: true,
-            canSendData: true,
-            canUpdateMetadata: true,
-          },
-        });
-        const userToken = await accessToken.toJwt();
-
-        console.log({ userToken });
-
-        token = userToken;
-      } catch (error) {
-        console.log(error);
-        const accessToken = new AccessToken({
-          apiKey: process.env.NEXT_PUBLIC_API_KEY ?? "",
-          roomId: params.roomId,
-          // role: data.previewPeers.length > 0 ? Role.LISTENER : Role.HOST,
-          role: Role.HOST,
-          permissions: {
-            admin: true,
-            canConsume: true,
-            canProduce: true,
-            canProduceSources: { cam: true, mic: true, screen: true },
-            canRecvData: true,
-            canSendData: true,
-            canUpdateMetadata: true,
-          },
-        });
-        const userToken = await accessToken.toJwt();
-        console.log({ userToken });
-        token = userToken;
-      }
+      const response = await fetch(`/token?roomId=${params.roomId}`);
+      token = await response.text();
     }
 
     if (userDisplayName.length) {
@@ -117,7 +63,9 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
   };
 
   useEffect(() => {
-    if (state === "connected" && params.roomId === "meetings") {
+    console.log({ state });
+
+    if (state === "connected") {
       push(`/${params.roomId}`);
     }
   }, [state]);
@@ -210,9 +158,9 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center w-full flex-col">
+        <div className="flex items-center w-full">
           <button
-            className="flex items-center justify-center bg-[#B1D27B] text-slate-100 rounded-md p-2 mt-2 w-full"
+            className="flex items-center justify-center bg-[#246BFD] text-slate-100 rounded-md p-2 mt-2 w-full"
             onClick={handleStartSpaces}
           >
             {isJoining ? "Joining Spaces..." : "Start Spaces"}
@@ -225,13 +173,6 @@ const Lobby = ({ params }: { params: { roomId: string } }) => {
                 className="w-6 h-6 ml-1"
               />
             )}
-          </button>
-          <button
-            className="items-center justify-center bg-[#B1D27B] text-slate-100 rounded-md p-2 mt-2 w-full"
-            onClick={() => push("/")}
-          >
-            {" "}
-            go back
           </button>
         </div>
       </div>
